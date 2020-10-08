@@ -44,32 +44,32 @@ namespace PetShopApplicationSolution.Infrastructure.Data.Repositories
 
         public List<Owner> FindOwner(int ownerId)
         {
-            throw new NotImplementedException();
+            return (List<Owner>)_ptx.Owners.Where(o => o.Id == ownerId);
         }
 
         public IEnumerable<Owner> FindOwnerByAddress(string searchValue)
         {
-            throw new NotImplementedException();
+            return _ptx.Owners.Where(o => o.Address.ToLower().Contains(searchValue.ToLower()));
         }
 
         public IEnumerable<Owner> FindOwnerByEmail(string searchValue)
         {
-            throw new NotImplementedException();
+            return _ptx.Owners.Where(o => o.Email.ToLower().Equals(searchValue.ToLower()));
         }
 
         public List<Owner> FindOwnerById(int searchForOwner)
         {
-            throw new NotImplementedException();
+            return (List<Owner>)_ptx.Owners.Where(o => o.Id == searchForOwner);
         }
 
         public IEnumerable<Owner> FindOwnerByName(string searchValue)
         {
-            throw new NotImplementedException();
+            return _ptx.Owners.Where(o => o.FirstName.ToLower().Contains(searchValue.ToLower()) || o.LastName.ToLower().Contains(searchValue.ToLower()));
         }
 
         public IEnumerable<Owner> FindOwnerByPhoneNummer(string searchValue)
         {
-            throw new NotImplementedException();
+            return _ptx.Owners.Where(o => o.PhoneNumber.ToLower().Contains(searchValue.ToLower()));
         }
 
         public IEnumerable<Owner> GetAllOwners()

@@ -83,7 +83,7 @@ namespace PetShopApplicationSolution.Infrastructure.Data.Repositories
 
         public Pet UpdateDB(Pet pet)
         {
-            return _ptx.Update(pet);
+            throw new NotImplementedException();
         }
     }
 }
