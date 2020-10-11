@@ -9,9 +9,10 @@ namespace PetShopApplicationSolution.Infrastructure.Data
     {
         public static void SeedDB(PetShopApplicationContext ptx)
         {
-            //ptx.Database.EnsureDeleted();
-
+            ptx.Database.EnsureDeleted();
             ptx.Database.EnsureCreated();
+
+            List<PetType> allTypes = new List<PetType>();
 
             List<PetType> allPetTypes = new List<PetType>
             {
@@ -25,8 +26,15 @@ namespace PetShopApplicationSolution.Infrastructure.Data
                 new PetType {NameOfPetTypes = "Rabbit"},
                 new PetType {NameOfPetTypes = "Dragon"},
                 new PetType {NameOfPetTypes = "Turtle"}
-
             };
+            foreach (var petType in allPetTypes)
+            {
+                var theType = ptx.Add(petType).Entity;
+                allTypes.Add(theType);
+            }
+            ptx.SaveChanges();
+
+            List<Owner> allTheOwners = new List<Owner>();
             List<Owner> allOwners = new List<Owner>
             {
                 new Owner {FirstName ="Jack", LastName = "Davidson", Address = "Deadwell 3, 6600 Vejen",
@@ -46,6 +54,14 @@ namespace PetShopApplicationSolution.Infrastructure.Data
                 new Owner {FirstName ="Arthur", LastName = "Curry", Address = "Coral Reef, Atlantis",
                     PhoneNumber = "9012 3456", Email = "Aquaman@justicemail.com"}
             };
+
+            foreach (var owner in allOwners)
+            {
+                var theOwner = ptx.Add(owner).Entity;
+                allTheOwners.Add(theOwner);
+            }
+
+
             List<PetColor> petColors = new List<PetColor>
             {
                 new PetColor{NameOfPetColor = "Red"},
@@ -74,6 +90,12 @@ namespace PetShopApplicationSolution.Infrastructure.Data
                     previousOwner = "Moira", Price = 306, PetType = allPetTypes[6], PetOwner = allOwners[6], PetColor = petColors[6]},
             };
 
+            foreach (var pet in pets)
+            {
+                ptx.Add(pet);
+            }
+            ptx.SaveChanges();
+
             List<User> users = new List<User>
             {
                 new User{Username = "UserJoe", Password = "1234", IsAdmin = false},
@@ -81,6 +103,7 @@ namespace PetShopApplicationSolution.Infrastructure.Data
                 new User{Username = "UserJanet", Password = "5678", IsAdmin = false},
                 new User{Username = "AdminAni", Password = "5678", IsAdmin = true},
             };
+
 
 
             ptx.Database.EnsureDeleted();

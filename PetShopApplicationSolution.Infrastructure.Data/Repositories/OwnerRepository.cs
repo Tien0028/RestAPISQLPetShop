@@ -39,7 +39,7 @@ namespace PetShopApplicationSolution.Infrastructure.Data.Repositories
 
         public List<Pet> FindAllPetsByOwner(Owner theOwner)
         {
-            throw new NotImplementedException();
+            return _ptx.Pets.Where(p => p.PetOwner == theOwner).ToList();
         }
 
         public List<Owner> FindOwner(int ownerId)

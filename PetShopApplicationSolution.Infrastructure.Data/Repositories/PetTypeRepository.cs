@@ -24,27 +24,30 @@ namespace PetShopApplicationSolution.Infrastructure.Data.Repositories
 
         public PetType DeletePetType(PetType petTypeForDeletion)
         {
-            throw new NotImplementedException();
+            var pets = _ptx.Pets.Where(p => p.PetType == petTypeForDeletion);
+            _ptx.RemoveRange(pets);
+            var deleteType = _ptx.PetTypes.Remove(petTypeForDeletion).Entity;
+            _ptx.SaveChanges();
+            return deleteType;
         }
 
         public List<Pet> FindAllPetsByType(PetType theType)
         {
-            throw new NotImplementedException();
+            return _ptx.Pets.Where(p => p.PetType == theType).ToList();
         }
 
         public List<PetType> FindPetTypeById(int id)
         {
-            throw new NotImplementedException();
+            return _ptx.PetTypes.Where(p => p.IdOfPetTypes == id).ToList();
         }
 
         public List<PetType> FindPetTypeByName(string petTypeName)
         {
-            throw new NotImplementedException();
+            return _ptx.PetTypes.Where(p => p.NameOfPetTypes.ToLower().Contains(petTypeName.ToLower())).ToList();
         }
 
         public List<PetType> GetAllPetTypes()
         {
-            //return _ptx.PetTypes;
             return _ptx.PetTypes.ToList();
         }
 

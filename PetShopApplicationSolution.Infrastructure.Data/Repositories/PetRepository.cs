@@ -63,7 +63,7 @@ namespace PetShopApplicationSolution.Infrastructure.Data.Repositories
 
         public IEnumerable<Pet> GetAllPets()
         {
-            return _ptx.Pets;
+            return _ptx.Pets.ToList();
         }
 
         public Pet ReadByPetId(int id)
@@ -73,7 +73,7 @@ namespace PetShopApplicationSolution.Infrastructure.Data.Repositories
 
         public List<Pet> ReadPets()
         {
-            throw new NotImplementedException();
+            return _ptx.Pets.ToList();
         }
 
         public IEnumerable<Pet> SearchPetsBytBirthday(DateTime dateValue)
