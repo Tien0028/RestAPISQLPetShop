@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Snurf</title>
+    <style>
+        body {
+            background-color: lightblue;
+            height: 100%;
+            width: 100%;
+        }
+
+        #main {
+            color: blue;
+        }
+
+        .food {
+            color: green;
+        }
+
+        .red-color {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <form action="#" onsubmit="createAddress(event)">
+        <label for="fstreetname">Street name:</label><br>
+        <input type="text" id="fstreetname" name="fstreetname" value=""><br>
+
+        <label for="lstreetnr">Street Number:</label><br>
+        <input type="number" id="lstreetnr" name="lstreetnr" value=""><br><br>
+
+        <label for="ladditional">Additional Information:</label><br>
+        <input type="text" id="ladditional" name="ladditional" value=""><br><br>
+
+        <label for="lcity">City Id</label><br>
+        <input type="number" id="lcity" name="lcity" value=""><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+
+    <div id="main"
+         class="red-color">....loading.....</div>
+
+    <button onclick="loadData()">click me1!</button>
+    <script>
+    function createAddress(event) {
+        event.preventDefault()
+        let streetName = document.getElementById("fstreetname").value;
+        let streetNr = +document.getElementById("lstreetnr").value;
+        let streetAdditional = document.getElementById("ladditional").value;
+        let cityId = +document.getElementById("lcity").value;
+        let address = {
+            StreetName: streetName,
+            StreetNr: streetNr,
+            Additional: streetAdditional,
+            CityId: cityId
+        }
+
+        fetch("https://localhost:5001/api/cities", {
+            method: "POST",
+            body: JSON.stringify(address)
+        }).then(res => {
+            console.log("Request complete! response:", res);
+        }).catch(err => {
+            console.error(err);
+        });
+    }
+    function loadData() {
+        fetch('https://localhost:5001/api/cities')
+            .then(response => response.json())
+            .then(cities => {
+                console.log(cities);
+                let datatags = "";
+                cities.forEach(city => {
+                    datatags += "<h1>" + city.name + "</h1>"
+                })
+                document.getElementById("main").innerHTML = datatags;
+            })
+
+    }
+    </script>
+</body>
+</html>

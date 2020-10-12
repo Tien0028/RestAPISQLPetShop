@@ -11,7 +11,7 @@ namespace PetShopApplication.Core.ApplicationService
         List<Pet> ListAllPets();
         Pet FindPetById(int id);
         List<Pet> FindPetByName(string searchName);
-        Pet NewPet(string name, string type, DateTime birthday, DateTime soldDate, string previousOwner, double price);
+        Pet NewPet(Pet newPet);
         Pet Create(Pet pet);
         Pet Update(Pet pet);
         void Delete(Pet pet);

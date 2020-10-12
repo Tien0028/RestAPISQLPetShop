@@ -54,20 +54,20 @@ namespace PetShopApplication.Core.ApplicationService.Impl
 
         public List<Pet> ListAllPets()
         {
-            return _petRepo.GetAllPets().ToList();
+          
 
-            //List<Pet> listAllPets = _petRepo.GetAllPets().ToList();
-            //if(listAllPets != null)
-            //{
-            //    return listAllPets;
-            //}
-            //else
-            //{
-            //    throw new Exception(message: "Missing data, nothing could be found");
-            //}
+            List<Pet> listAllPets = _petRepo.GetAllPets().ToList();
+            if (listAllPets != null)
+            {
+                return listAllPets;
+            }
+            else
+            {
+                throw new Exception(message: "Missing data, nothing could be found");
+            }
         }
 
-        public Pet NewPet(string name, string type, DateTime birthday, DateTime soldDate, string previousOwner, double price)
+        public Pet NewPet(Pet newPet)
         {
             throw new NotImplementedException();
         }
