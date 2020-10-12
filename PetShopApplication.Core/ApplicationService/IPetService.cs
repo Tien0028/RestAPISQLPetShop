@@ -19,6 +19,7 @@ namespace PetShopApplication.Core.ApplicationService
         List<Pet> Get5CheapestPets();
         List<Pet> sortedPetsByPrice();
         List<Pet> SearchForPet(FilterModel filter);
+        List<Pet> GetFilteredPets(FilterModel filter);
 
     }
 }

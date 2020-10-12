@@ -61,9 +61,13 @@ namespace PetShopApplicationSolution.Infrastructure.Data.Repositories
             return _ptx.Pets.Where(p => p.SoldDate.Year == soldValue.Year);
         }
 
-        public IEnumerable<Pet> GetAllPets()
+        public IEnumerable<Pet> GetAllPets(FilterModel filter)
         {
-            return _ptx.Pets.ToList();
+            if(filter == null)
+            {
+                return _ptx.Pets;
+            }
+            return _ptx.Pets.Skip((filter.CurrentPage - 1) * filter.ItemsOnPage).Take(filter.ItemsOnPage);
         }
 
         public Pet ReadByPetId(int id)

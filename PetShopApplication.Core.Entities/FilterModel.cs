@@ -8,5 +8,8 @@ namespace PetShopApplication.Core.Entities
     {
         public string SearchValue { get; set; }
         public string SearchTerm { get; set; }
+        public int CurrentPage { get; set; }
+        public int ItemsOnPage { get; set; }
+
     }
 }

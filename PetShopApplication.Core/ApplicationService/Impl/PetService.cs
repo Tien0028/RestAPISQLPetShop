@@ -46,17 +46,25 @@ namespace PetShopApplication.Core.ApplicationService.Impl
             return _petRepo.ReadPets().OrderBy(pet => pet.Price).Take(5).ToList();
         }
 
+        public List<Pet> GetFilteredPets(FilterModel filter)
+        {
+            return _petRepo.GetAllPets(filter).ToList();
+                
+        }
+
         public List<Pet> ListAllPets()
         {
-            List<Pet> listAllPets = _petRepo.GetAllPets().ToList();
-            if(listAllPets != null)
-            {
-                return listAllPets;
-            }
-            else
-            {
-                throw new Exception(message: "Missing data, nothing could be found");
-            }
+            return _petRepo.GetAllPets().ToList();
+
+            //List<Pet> listAllPets = _petRepo.GetAllPets().ToList();
+            //if(listAllPets != null)
+            //{
+            //    return listAllPets;
+            //}
+            //else
+            //{
+            //    throw new Exception(message: "Missing data, nothing could be found");
+            //}
         }
 
         public Pet NewPet(string name, string type, DateTime birthday, DateTime soldDate, string previousOwner, double price)

@@ -13,7 +13,7 @@ namespace PetShopApplication.Core.DomainService
         Pet ReadByPetId(int id);
         void Delete(Pet pet);
         IEnumerable<Pet> FindPetByName(string petName);
-        IEnumerable<Pet> GetAllPets();
+        IEnumerable<Pet> GetAllPets(FilterModel filter = null);
         IEnumerable<Pet> SearchPetsBytBirthday(DateTime dateValue);
         IEnumerable<Pet> FindPetsBySoldDate(DateTime soldValue);
         IEnumerable<Pet> FindPetsByFormerOwner(string searchValue);

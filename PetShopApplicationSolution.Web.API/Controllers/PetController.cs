@@ -41,7 +41,7 @@ namespace PetShopApplicationSolution.Web.API.Controllers
             {
                 if(string.IsNullOrEmpty(filter.SearchTerm) || string.IsNullOrEmpty(filter.SearchValue))
                 {
-                    return StatusCode(500, "Try enterign both a SearchTerm and a SearchValue, then try again");
+                    return StatusCode(500, "Try entering both a SearchTerm and a SearchValue, then try again");
                 }
                 else
                 {
@@ -83,15 +83,33 @@ namespace PetShopApplicationSolution.Web.API.Controllers
         [HttpPost]
         public ActionResult<Pet> Post([FromBody] Pet pet)
         {
-            if (string.IsNullOrEmpty(pet.Name))
+            if (string.IsNullOrEmpty(pet.Name) || pet.PetType == null || pet.PetColor == null || pet.SoldDate == null || string.IsNullOrEmpty(pet.previousOwner))
             {
-                return BadRequest("Error, Error, Error! Check Name. Error!");
+                return BadRequest("Error, Error, Error! Check Everything you typed in. Error!");
             }
-
             if (pet.Price <= 0 || pet.Price.Equals(null))
             {
                 return BadRequest("Error, Error, Error! Check the Price, Moron. Error!");
             }
+
+            PetType petType = pet.PetType;
+            if(petType.IdOfPetTypes == 0)
+            {
+                if (string.IsNullOrEmpty(petType.NameOfPetTypes))
+                {
+                    return BadRequest("Really? Want another explanation?! Fine! You did not enter all information for a new petType, moron!");
+                }
+            }
+
+            Owner owner = pet.PetOwner;
+            if(owner.Id == 0)
+            {
+                if(string.IsNullOrEmpty(owner.FirstName) || string.IsNullOrEmpty(owner.LastName) || string.IsNullOrEmpty(owner.Address) || string.IsNullOrEmpty(owner.PhoneNumber) || string.IsNullOrEmpty(owner.Email))
+                {
+                    return BadRequest("You did not enter all the required owner data, pal. Enter the id of an existing owner, or EXIT!!!!");
+                }
+            }
+            
             _petService.Create(pet);
             return StatusCode(500, $"Yay Pet"  +  pet.Name  +  $"has been bred");
         }
@@ -99,7 +117,7 @@ namespace PetShopApplicationSolution.Web.API.Controllers
 
         // DELETE api/<PetController>/5
         [HttpDelete("{id}")]
-        public ActionResult<Pet> Delete(int id)
+        public ActionResult<string> Delete(int id)
         {
             try
             {
