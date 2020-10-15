@@ -52,10 +52,13 @@ namespace PetShopApplicationSolution.Web.API
             services.AddScoped<IOwnerRepository, OwnerRepository>();
             services.AddScoped<IPetRepository, PetRepository>();
             services.AddScoped<IPetTypeRepository, PetTypeRepository>();
+            services.AddScoped<IPetColorRepository, PetColorRepository>();
 
             services.AddScoped<IOwnerService, OwnerService>();
             services.AddScoped<IPetService, PetService>();
             services.AddScoped<IPetTypeService, PetTypeService>();
+            services.AddScoped<IPetColorService, PetColorService>();
+
             services.AddControllers().AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;

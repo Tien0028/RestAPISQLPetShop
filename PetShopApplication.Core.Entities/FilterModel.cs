@@ -10,6 +10,7 @@ namespace PetShopApplication.Core.Entities
         public string SearchTerm { get; set; }
         public int CurrentPage { get; set; }
         public int ItemsOnPage { get; set; }
+        public string OrganizeOrder { get; set; }
 
     }
 }

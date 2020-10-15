@@ -87,7 +87,12 @@ namespace PetShopApplicationSolution.Infrastructure.Data.Repositories
 
         public Pet UpdateDB(Pet pet)
         {
-            throw new NotImplementedException();
+            _ptx.Attach(pet.Name);
+            _ptx.Attach(pet.PetOwner);
+            _ptx.Attach(pet.PetType);
+            var updatedPet = _ptx.Update(pet).Entity;
+            _ptx.SaveChanges();
+            return updatedPet;
         }
     }
 }

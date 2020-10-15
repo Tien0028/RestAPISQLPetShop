@@ -8,6 +8,6 @@ namespace PetShopApplication.Core.Entities
     {
         public int IdOfPetColor { get; set; }
         public string NameOfPetColor { get; set; }
-        public List<Pet> PetColors { get; set; }
+        public List<PetColorPet> ColorPets { get; set; }
     }
 }

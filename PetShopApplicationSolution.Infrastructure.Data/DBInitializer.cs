@@ -32,7 +32,7 @@ namespace PetShopApplicationSolution.Infrastructure.Data
                 var theType = ptx.Add(petType).Entity;
                 allTypes.Add(theType);
             }
-            ptx.SaveChanges();
+            //ptx.SaveChanges();
 
             List<Owner> allTheOwners = new List<Owner>();
             List<Owner> allOwners = new List<Owner>
@@ -61,7 +61,7 @@ namespace PetShopApplicationSolution.Infrastructure.Data
                 allTheOwners.Add(theOwner);
             }
 
-
+            List<PetColor> theColors = new List<PetColor>();
             List<PetColor> petColors = new List<PetColor>
             {
                 new PetColor{NameOfPetColor = "Red"},
@@ -72,22 +72,30 @@ namespace PetShopApplicationSolution.Infrastructure.Data
                 new PetColor{NameOfPetColor = "Indigo"},
                 new PetColor{NameOfPetColor = "Violet"}
             };
+            foreach (var color in petColors)
+            {
+                var thecolor = ptx.Add(color).Entity;
+                theColors.Add(thecolor);
+            }
+
+            
             List<Pet> pets = new List<Pet>
             {
                 new Pet{Name = "Dante", Birthdate = new DateTime(2013, 7, 8), SoldDate = new DateTime(2014, 7, 8),
-                    previousOwner = "Uriel Sorensson", Price = 250, PetType = allPetTypes[0], PetOwner = allOwners[0], PetColor = petColors[0]},
+                    previousOwner = "Uriel Sorensson", Price = 250, PetType = allPetTypes[0], PetOwner = allOwners[0], PetColor = new List<PetColorPet> { new PetColorPet { PetColor = petColors[0]}}},
+
                 new Pet{Name = "Vergil", Birthdate = new DateTime(2015, 2, 4), SoldDate = new DateTime(2016, 2, 4),
-                    previousOwner = "Bruce Wayne", Price = 750, PetType = allPetTypes[1], PetOwner = allOwners[1], PetColor = petColors[1]},
+                    previousOwner = "Bruce Wayne", Price = 750, PetType = allPetTypes[1], PetOwner = allOwners[1], PetColor = new List<PetColorPet> { new PetColorPet { PetColor = petColors[1]}}},
                 new Pet{Name = "Lady", Birthdate = new DateTime(2014, 5, 2), SoldDate = new DateTime(2016, 2, 4),
-                    previousOwner = "Loki Odinson", Price = 360, PetType = allPetTypes[2], PetOwner = allOwners[2], PetColor = petColors[2]},
+                    previousOwner = "Loki Odinson", Price = 360, PetType = allPetTypes[2], PetOwner = allOwners[2], PetColor = new List<PetColorPet> { new PetColorPet { PetColor = petColors[2]}}},
                 new Pet{Name = "Trish", Birthdate = new DateTime(2012, 6, 4), SoldDate = new DateTime(2012, 7, 3),
-                    previousOwner = "Urizen Sparkles", Price = 70, PetType = allPetTypes[3], PetOwner = allOwners[3], PetColor = petColors[3]},
+                    previousOwner = "Urizen Sparkles", Price = 70, PetType = allPetTypes[3], PetOwner = allOwners[3], PetColor = new List<PetColorPet> { new PetColorPet { PetColor = petColors[3]}}},
                 new Pet{Name = "Irish", Birthdate = new DateTime(2011, 4, 6), SoldDate = new DateTime(2013, 3, 1),
-                    previousOwner = "Simba", Price = 120, PetType = allPetTypes[4], PetOwner = allOwners[4], PetColor = petColors[4]},
+                    previousOwner = "Simba", Price = 120, PetType = allPetTypes[4], PetOwner = allOwners[4], PetColor = new List<PetColorPet> { new PetColorPet { PetColor = petColors[4]}}},
                 new Pet{Name = "Barry", Birthdate = new DateTime(1920, 4, 6), SoldDate = new DateTime(2018, 3, 1),
-                    previousOwner = "Henry Allen", Price = 30, PetType = allPetTypes[5], PetOwner = allOwners[5], PetColor = petColors[5]},
+                    previousOwner = "Henry Allen", Price = 30, PetType = allPetTypes[5], PetOwner = allOwners[5], PetColor = new List<PetColorPet> { new PetColorPet { PetColor = petColors[5]}}},
                 new Pet{Name = "OLiver", Birthdate = new DateTime(1970, 5, 9), SoldDate = new DateTime(2019, 2, 3),
-                    previousOwner = "Moira", Price = 306, PetType = allPetTypes[6], PetOwner = allOwners[6], PetColor = petColors[6]},
+                    previousOwner = "Moira", Price = 306, PetType = allPetTypes[6], PetOwner = allOwners[6], PetColor = new List<PetColorPet> { new PetColorPet { PetColor = petColors[6]}}},
             };
 
             foreach (var pet in pets)
@@ -106,13 +114,13 @@ namespace PetShopApplicationSolution.Infrastructure.Data
 
 
 
-            ptx.Database.EnsureDeleted();
+            //ptx.Database.EnsureDeleted();
 
             ptx.Pets.AddRange(pets);
             ptx.Owners.AddRange(allOwners);
             ptx.PetTypes.AddRange(allPetTypes);
             ptx.PetColors.AddRange(petColors);
-            ptx.Users.AddRange(users);
+            //ptx.Users.AddRange(users);
             ptx.SaveChanges();
              
         }

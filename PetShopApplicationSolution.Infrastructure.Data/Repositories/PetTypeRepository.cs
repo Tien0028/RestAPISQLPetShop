@@ -53,7 +53,9 @@ namespace PetShopApplicationSolution.Infrastructure.Data.Repositories
 
         public PetType UpdatePetType(PetType updatePetType, PetType oldPetType)
         {
-            throw new NotImplementedException();
+            var updateType = _ptx.Update(updatePetType).Entity;
+            _ptx.SaveChanges();
+            return updateType;
         }
     }
 }

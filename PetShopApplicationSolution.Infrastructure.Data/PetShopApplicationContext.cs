@@ -17,6 +17,6 @@ namespace PetShopApplicationSolution.Infrastructure.Data
         public DbSet<PetType> PetTypes { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<PetColor> PetColors { get; set; }
-
+        public DbSet<PetColorPet> PetColorPet { get; set; }
     }
 }
