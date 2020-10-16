@@ -21,12 +21,6 @@ namespace PetShopApplication.Core.ApplicationService.Impl
             return _petTypeRepo.AddNewPetType(newPetType);
         }
 
-        //public PetType DeletePetType(PetType petTypeForDeletion)
-        //{
-        //    PetType petTypeToBeDeleted = FindPetTypeById(petTypeForDeletion);
-        //    return _petTypeRepo.DeletePetType(petTypeToBeDeleted);
-        //}
-
         public PetType DeletePetType(int id)
         {
             PetType petTypeForDeletion = FindPetTypeById(id);

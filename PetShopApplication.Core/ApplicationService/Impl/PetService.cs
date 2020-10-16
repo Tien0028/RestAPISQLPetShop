@@ -13,12 +13,14 @@ namespace PetShopApplication.Core.ApplicationService.Impl
         private readonly IPetRepository _petRepo;
         private readonly IOwnerRepository _ownerRepo;
         private readonly IPetTypeRepository _petTypeRepo;
+        private readonly IPetColorRepository _petColorRepo;
 
-        public PetService(IPetRepository petRepository, IOwnerRepository ownerRepository, IPetTypeRepository petTypeRepository)
+        public PetService(IPetRepository petRepository, IOwnerRepository ownerRepository, IPetTypeRepository petTypeRepository, IPetColorRepository petColorRepository)
         {
             _petRepo = petRepository;
             _ownerRepo = ownerRepository;
             _petTypeRepo = petTypeRepository;
+            _petColorRepo = petColorRepository;
         }
         public Pet Create(Pet pet)
         {

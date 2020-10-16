@@ -9,7 +9,15 @@ namespace PetShopApplicationSolution.Infrastructure.Data
     {
         public static void SeedDB(PetShopApplicationContext ptx)
         {
+
+            // Delete the database, if it already exists. I do this because an
+            // existing database may not be compatible with the entity model,
+            // if the entity model was changed since the database was created.
+            // This operation has no effect for an in-memory database.
             ptx.Database.EnsureDeleted();
+
+            // Create the database, if it does not already exists. This operation
+            // has no effect for an in-memory database.
             ptx.Database.EnsureCreated();
 
             List<PetType> allTypes = new List<PetType>();
@@ -104,13 +112,14 @@ namespace PetShopApplicationSolution.Infrastructure.Data
             }
             ptx.SaveChanges();
 
-            List<User> users = new List<User>
-            {
-                new User{Username = "UserJoe", Password = "1234", IsAdmin = false},
-                new User{Username = "AdminAnn", Password = "1234", IsAdmin = true},
-                new User{Username = "UserJanet", Password = "5678", IsAdmin = false},
-                new User{Username = "AdminAni", Password = "5678", IsAdmin = true},
-            };
+            // Create four users with hashed and salted passwords
+            //List<User> users = new List<User>
+            //{
+            //    new User{Username = "UserJoe", Password = "1234", IsAdmin = false},
+            //    new User{Username = "AdminAnn", Password = "1234", IsAdmin = true},
+            //    new User{Username = "UserJanet", Password = "5678", IsAdmin = false},
+            //    new User{Username = "AdminAni", Password = "5678", IsAdmin = true},
+            //};
 
 
 
