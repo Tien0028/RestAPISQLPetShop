@@ -1,4 +1,5 @@
 ﻿using PetShopApplication.Core.Entities;
+using PetShopApplicationSolution.Infrastructure.Data.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,6 +8,13 @@ namespace PetShopApplicationSolution.Infrastructure.Data
 {
     public class DBInitializer
     {
+        private readonly AuthenticationHelper authenticationHelper;
+
+        public DBInitializer(AuthenticationHelper authHelper)
+        {
+            authenticationHelper = authHelper;
+        }
+
         public static void SeedDB(PetShopApplicationContext ptx)
         {
 
@@ -113,12 +121,25 @@ namespace PetShopApplicationSolution.Infrastructure.Data
             ptx.SaveChanges();
 
             // Create four users with hashed and salted passwords
+
+
+            string password = "1234";
+            byte[] passwordHashJoe, passwordSaltJoe, passwordHashAnn, passwordSaltAnn, passwordHashJanet, passwordSaltJanet, passwordHashAni, passwordSaltAni;
+            authenticationHelper.CreatePasswordHash(password, out passwordHashJoe, out passwordSaltJoe);
+            authenticationHelper.CreatePasswordHash(password, out passwordHashAnn, out passwordSaltAnn);
+            authenticationHelper.CreatePasswordHash(password, out passwordHashJanet, out passwordSaltJanet);
+            authenticationHelper.CreatePasswordHash(password, out passwordHashAni, out passwordSaltAni);
+
             List<User> users = new List<User>
             {
-                new User{Username = "UserJoe", Password = "1234", IsAdmin = false},
-                new User{Username = "AdminAnn", Password = "1234", IsAdmin = true},
-                new User{Username = "UserJanet", Password = "5678", IsAdmin = false},
-                new User{Username = "AdminAni", Password = "5678", IsAdmin = true},
+                new User{Username = "UserJoe", PasswordHash = passwordHashJoe,
+                    PasswordSalt = passwordSaltJoe, IsAdmin = false},
+                new User{Username = "AdminAnn", PasswordHash = passwordHashAnn, 
+                    PasswordSalt = passwordSaltAnn, IsAdmin = true},
+                new User{Username = "UserJanet", PasswordHash = passwordHashJanet, 
+                    PasswordSalt =passwordSaltJanet, IsAdmin = false},
+                new User{Username = "AdminAni", PasswordHash = passwordHashAni, 
+                    PasswordSalt = passwordSaltAni, IsAdmin = true},
             };
 
             foreach (var user in users)
