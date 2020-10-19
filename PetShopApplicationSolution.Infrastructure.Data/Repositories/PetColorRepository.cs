@@ -10,7 +10,12 @@ namespace PetShopApplicationSolution.Infrastructure.Data.Repositories
 {
     public class PetColorRepository : IPetColorRepository
     {
-        readonly PetShopApplicationContext _ptx;
+        private readonly PetShopApplicationContext _ptx;
+
+        public PetColorRepository(PetShopApplicationContext ptx)
+        {
+            _ptx = ptx;
+        }
 
         public PetColor CreatePetColor(PetColor newPetColor)
         {
