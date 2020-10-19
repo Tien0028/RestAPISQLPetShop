@@ -81,8 +81,6 @@ namespace PetShopApplicationSolution.Infrastructure.Data.Repositories
         {
            
             return _ptx.Owners.FirstOrDefault(c => c.Id == id);
-
-       
         }
 
         public List<Owner> ReadOwners()
@@ -99,8 +97,9 @@ namespace PetShopApplicationSolution.Infrastructure.Data.Repositories
             //var saved = _ptx.Owners.Add(owner).Entity;
             //_ptx.SaveChanges();
             //return saved;
-            _ptx.Attach(owner).State = EntityState.Modified;
+            
             //_ptx.Entry(owner).Reference(o => o.Id).IsModified = true;
+            _ptx.Attach(owner).State = EntityState.Modified;
             _ptx.SaveChanges();
             return owner;
         }

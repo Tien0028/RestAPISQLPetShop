@@ -113,15 +113,32 @@ namespace PetShopApplicationSolution.Infrastructure.Data
             ptx.SaveChanges();
 
             // Create four users with hashed and salted passwords
-            //List<User> users = new List<User>
-            //{
-            //    new User{Username = "UserJoe", Password = "1234", IsAdmin = false},
-            //    new User{Username = "AdminAnn", Password = "1234", IsAdmin = true},
-            //    new User{Username = "UserJanet", Password = "5678", IsAdmin = false},
-            //    new User{Username = "AdminAni", Password = "5678", IsAdmin = true},
-            //};
+            List<User> users = new List<User>
+            {
+                new User{Username = "UserJoe", Password = "1234", IsAdmin = false},
+                new User{Username = "AdminAnn", Password = "1234", IsAdmin = true},
+                new User{Username = "UserJanet", Password = "5678", IsAdmin = false},
+                new User{Username = "AdminAni", Password = "5678", IsAdmin = true},
+            };
+
+            foreach (var user in users)
+            {
+                ptx.Add(user);
+            }
+            ptx.SaveChanges();
 
 
+            List<ToDoItem> items = new List<ToDoItem>
+            {
+                new ToDoItem { IsComplete=true, Name="Make homework"},
+                new ToDoItem { IsComplete=false, Name="Sleep"}
+            };
+
+            foreach (var item in items)
+            {
+                ptx.Add(item);
+            }
+            ptx.SaveChanges();
 
             //ptx.Database.EnsureDeleted();
 
@@ -129,7 +146,8 @@ namespace PetShopApplicationSolution.Infrastructure.Data
             ptx.Owners.AddRange(allOwners);
             ptx.PetTypes.AddRange(allPetTypes);
             ptx.PetColors.AddRange(petColors);
-            //ptx.Users.AddRange(users);
+            ptx.Users.AddRange(users);
+            ptx.ToDoItems.AddRange(items);
             ptx.SaveChanges();
              
         }
