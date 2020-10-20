@@ -65,12 +65,12 @@ namespace PetShopApplicationSolution.Infrastructure.Data.Repositories
 
         public List<PetColor> FindPetColorwithID(int id)
         {
-            return _ptx.PetColors.Where(p => p.IdOfPetColor == id).ToList();
+            return _ptx.PetColors.Where(p => p.ID == id).ToList();
         }
 
         public List<PetColor> FindPetColorwithIDwithPets(int id)
         {
-            return _ptx.PetColors.Include(p => p.ColorPets).Where(p => p.IdOfPetColor == id).ToList();
+            return _ptx.PetColors.Include(p => p.ColorPets).Where(p => p.ID == id).ToList();
         }
 
         public List<PetColor> FindPetColorwithName(string pcName, FilterModel filter)

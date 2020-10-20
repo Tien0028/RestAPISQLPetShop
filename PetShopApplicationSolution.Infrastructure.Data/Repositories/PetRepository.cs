@@ -32,7 +32,7 @@ namespace PetShopApplicationSolution.Infrastructure.Data.Repositories
         public List<Pet> FindPetById(int searchPetId)
         {
 
-            return (List<Pet>)_ptx.Pets.Where(p => p.Id == searchPetId);
+            return (List<Pet>)_ptx.Pets.Where(p => p.ID == searchPetId);
             
 
         }
@@ -72,7 +72,7 @@ namespace PetShopApplicationSolution.Infrastructure.Data.Repositories
 
         public Pet ReadByPetId(int id)
         {
-            return _ptx.Pets.FirstOrDefault(p => p.Id == id);
+            return _ptx.Pets.FirstOrDefault(p => p.ID == id);
         }
 
         public List<Pet> ReadPets()

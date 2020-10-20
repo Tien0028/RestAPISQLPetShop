@@ -102,7 +102,7 @@ namespace PetShopApplicationSolutionRestAPI.Controllers
         [HttpPut("{id}")]
         public ActionResult<PetType> Put(int id, [FromBody] PetType petType)
         {
-            if (id < 0 || petType.IdOfPetTypes != id)
+            if (id < 0 || petType.ID != id)
             {
                 return BadRequest("ID Error! Please check id, make sure they match!");
             }

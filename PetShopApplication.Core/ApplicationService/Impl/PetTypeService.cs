@@ -51,10 +51,10 @@ namespace PetShopApplication.Core.ApplicationService.Impl
             {
                 PetType desiredPetType = selectedPetType.Select(thePet => new PetType()
                 {
-                    IdOfPetTypes = thePet.IdOfPetTypes,
+                    ID = thePet.ID,
                     NameOfPetTypes = thePet.NameOfPetTypes,
                     PetTypes = FindAllPetsByPetType(thePet)
-                }).FirstOrDefault(thePet => thePet.IdOfPetTypes == id);
+                }).FirstOrDefault(thePet => thePet.ID == id);
                 return desiredPetType;
             }
         }
@@ -71,7 +71,7 @@ namespace PetShopApplication.Core.ApplicationService.Impl
 
         public PetType UpdatePetType(PetType updatePetType)
         {
-            PetType oldPetType = FindPetTypeById(updatePetType.IdOfPetTypes);
+            PetType oldPetType = FindPetTypeById(updatePetType.ID);
             return _petTypeRepo.UpdatePetType(updatePetType, oldPetType);
             
         }

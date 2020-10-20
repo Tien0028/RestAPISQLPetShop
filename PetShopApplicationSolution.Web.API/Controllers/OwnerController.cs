@@ -93,7 +93,7 @@ namespace PetShopApplicationSolution.Web.API.Controllers
         [HttpPut("{id}")]
         public ActionResult<Owner> Put(int id, [FromBody] Owner owner)
         {
-            if(id != owner.Id || id == 0)
+            if(id != owner.ID || id == 0)
             {
                 return StatusCode(500, "Your ids have to be the same, otherwise, this is going south, real quick!");
             }

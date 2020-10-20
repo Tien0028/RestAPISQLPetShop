@@ -32,7 +32,7 @@ namespace PetShopApplicationSolution.Infrastructure.Data.Repositories
 
         public Owner DeleteOwner(int id)
         {
-            var ownerRemoved = _ptx.Remove(new Owner { Id = id }).Entity;
+            var ownerRemoved = _ptx.Remove(new Owner { ID = id }).Entity;
             _ptx.SaveChanges();
             return ownerRemoved;
         }
@@ -44,7 +44,7 @@ namespace PetShopApplicationSolution.Infrastructure.Data.Repositories
 
         public List<Owner> FindOwner(int ownerId)
         {
-            return (List<Owner>)_ptx.Owners.Where(o => o.Id == ownerId);
+            return (List<Owner>)_ptx.Owners.Where(o => o.ID == ownerId);
         }
 
         public IEnumerable<Owner> FindOwnerByAddress(string searchValue)
@@ -59,7 +59,7 @@ namespace PetShopApplicationSolution.Infrastructure.Data.Repositories
 
         public List<Owner> FindOwnerById(int searchForOwner)
         {
-            return (List<Owner>)_ptx.Owners.Where(o => o.Id == searchForOwner);
+            return (List<Owner>)_ptx.Owners.Where(o => o.ID == searchForOwner);
         }
 
         public IEnumerable<Owner> FindOwnerByName(string searchValue)
@@ -80,7 +80,7 @@ namespace PetShopApplicationSolution.Infrastructure.Data.Repositories
         public Owner ReadOwnerById(int id)
         {
            
-            return _ptx.Owners.FirstOrDefault(c => c.Id == id);
+            return _ptx.Owners.FirstOrDefault(c => c.ID == id);
         }
 
         public List<Owner> ReadOwners()

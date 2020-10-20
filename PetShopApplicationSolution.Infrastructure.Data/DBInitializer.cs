@@ -6,16 +6,16 @@ using System.Text;
 
 namespace PetShopApplicationSolution.Infrastructure.Data
 {
-    public class DBInitializer
+    public class DBInitializer: IDBInitializer
     {
-        private readonly AuthenticationHelper authenticationHelper;
+        private readonly IAuthenticationHelper authenticationHelper;
 
-        public DBInitializer(AuthenticationHelper authHelper)
+        public DBInitializer(IAuthenticationHelper authHelper)
         {
             authenticationHelper = authHelper;
         }
 
-        public static void SeedDB(PetShopApplicationContext ptx)
+        public void SeedDB(PetShopApplicationContext ptx)
         {
 
             // Delete the database, if it already exists. I do this because an
@@ -43,11 +43,11 @@ namespace PetShopApplicationSolution.Infrastructure.Data
                 new PetType {NameOfPetTypes = "Dragon"},
                 new PetType {NameOfPetTypes = "Turtle"}
             };
-            foreach (var petType in allPetTypes)
-            {
-                var theType = ptx.Add(petType).Entity;
-                allTypes.Add(theType);
-            }
+            //foreach (var petType in allPetTypes)
+            //{
+            //    var theType = ptx.Add(petType).Entity;
+            //    allTypes.Add(theType);
+            //}
             //ptx.SaveChanges();
 
             List<Owner> allTheOwners = new List<Owner>();
@@ -71,11 +71,11 @@ namespace PetShopApplicationSolution.Infrastructure.Data
                     PhoneNumber = "9012 3456", Email = "Aquaman@justicemail.com"}
             };
 
-            foreach (var owner in allOwners)
-            {
-                var theOwner = ptx.Add(owner).Entity;
-                allTheOwners.Add(theOwner);
-            }
+            //foreach (var owner in allOwners)
+            //{
+            //    var theOwner = ptx.Add(owner).Entity;
+            //    allTheOwners.Add(theOwner);
+            //}
 
             List<PetColor> theColors = new List<PetColor>();
             List<PetColor> petColors = new List<PetColor>
@@ -88,11 +88,11 @@ namespace PetShopApplicationSolution.Infrastructure.Data
                 new PetColor{NameOfPetColor = "Indigo"},
                 new PetColor{NameOfPetColor = "Violet"}
             };
-            foreach (var color in petColors)
-            {
-                var thecolor = ptx.Add(color).Entity;
-                theColors.Add(thecolor);
-            }
+            //foreach (var color in petColors)
+            //{
+            //    var thecolor = ptx.Add(color).Entity;
+            //    theColors.Add(thecolor);
+            //}
 
             
             List<Pet> pets = new List<Pet>
@@ -114,11 +114,11 @@ namespace PetShopApplicationSolution.Infrastructure.Data
                     previousOwner = "Moira", Price = 306, PetType = allPetTypes[6], PetOwner = allOwners[6], PetColor = new List<PetColorPet> { new PetColorPet { PetColor = petColors[6]}}},
             };
 
-            foreach (var pet in pets)
-            {
-                ptx.Add(pet);
-            }
-            ptx.SaveChanges();
+            //foreach (var pet in pets)
+            //{
+            //    ptx.Add(pet);
+            //}
+            //ptx.SaveChanges();
 
             // Create four users with hashed and salted passwords
 
@@ -142,11 +142,11 @@ namespace PetShopApplicationSolution.Infrastructure.Data
                     PasswordSalt = passwordSaltAni, IsAdmin = true},
             };
 
-            foreach (var user in users)
-            {
-                ptx.Add(user);
-            }
-            ptx.SaveChanges();
+            //foreach (var user in users)
+            //{
+            //    ptx.Add(user);
+            //}
+            //ptx.SaveChanges();
 
 
             List<ToDoItem> items = new List<ToDoItem>
@@ -155,11 +155,11 @@ namespace PetShopApplicationSolution.Infrastructure.Data
                 new ToDoItem { IsComplete=false, Name="Sleep"}
             };
 
-            foreach (var item in items)
-            {
-                ptx.Add(item);
-            }
-            ptx.SaveChanges();
+            //foreach (var item in items)
+            //{
+            //    ptx.Add(item);
+            //}
+            //ptx.SaveChanges();
 
             //ptx.Database.EnsureDeleted();
 

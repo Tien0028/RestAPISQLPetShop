@@ -38,7 +38,7 @@ namespace PetShopApplicationSolution.Infrastructure.Data.Repositories
 
         public List<PetType> FindPetTypeById(int id)
         {
-            return _ptx.PetTypes.Where(p => p.IdOfPetTypes == id).ToList();
+            return _ptx.PetTypes.Where(p => p.ID == id).ToList();
         }
 
         public List<PetType> FindPetTypeByName(string petTypeName)

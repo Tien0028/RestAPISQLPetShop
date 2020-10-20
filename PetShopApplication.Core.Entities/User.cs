@@ -6,7 +6,7 @@ namespace PetShopApplication.Core.Entities
 {
     public class User
     {
-        public long Id { get; set; }
+        public long ID { get; set; }
         public string Username { get; set; }
        
         public byte[] PasswordHash { get; set; }

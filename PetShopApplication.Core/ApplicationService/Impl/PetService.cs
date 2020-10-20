@@ -223,7 +223,7 @@ namespace PetShopApplication.Core.ApplicationService.Impl
 
         public Pet Update(Pet pet)
         {
-            Pet pets = FindPetById(pet.Id);
+            Pet pets = FindPetById(pet.ID);
             pet.Name = pet.Name;
             pet.PetType = pet.PetType;
             pet.Birthdate = pet.Birthdate;

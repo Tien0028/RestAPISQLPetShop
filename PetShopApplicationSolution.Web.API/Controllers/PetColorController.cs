@@ -139,7 +139,7 @@ namespace PetShopApplicationSolutionRestAPI.Controllers
         [HttpPut("{id}")]
         public ActionResult<PetColor> Put(int id, [FromBody] PetColor updatePetColor)
         {
-            if (id != updatePetColor.IdOfPetColor || id == 0)
+            if (id != updatePetColor.ID || id == 0)
             {
                 return BadRequest("Ids must match, and they can't be 0. What are you even doing now!");
             }

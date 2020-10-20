@@ -32,7 +32,7 @@ namespace PetShopApplicationSolution.Infrastructure.Data.Repositories
         public User Get(long id)
         {
             
-            return _ptx.Users.FirstOrDefault(u => u.Id == id);
+            return _ptx.Users.FirstOrDefault(u => u.ID == id);
         }
 
         public IEnumerable<User> GetAll()
@@ -42,7 +42,7 @@ namespace PetShopApplicationSolution.Infrastructure.Data.Repositories
 
         public void Remove(long id)
         {
-            var item = _ptx.Users.FirstOrDefault(u => u.Id == id);
+            var item = _ptx.Users.FirstOrDefault(u => u.ID == id);
             _ptx.Users.Remove(item);
             _ptx.SaveChanges();
         }

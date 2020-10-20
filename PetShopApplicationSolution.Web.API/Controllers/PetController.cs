@@ -93,7 +93,7 @@ namespace PetShopApplicationSolution.Web.API.Controllers
             }
 
             PetType petType = pet.PetType;
-            if(petType.IdOfPetTypes == 0)
+            if(petType.ID == 0)
             {
                 if (string.IsNullOrEmpty(petType.NameOfPetTypes))
                 {
@@ -102,7 +102,7 @@ namespace PetShopApplicationSolution.Web.API.Controllers
             }
 
             Owner owner = pet.PetOwner;
-            if(owner.Id == 0)
+            if(owner.ID == 0)
             {
                 if(string.IsNullOrEmpty(owner.FirstName) || string.IsNullOrEmpty(owner.LastName) || string.IsNullOrEmpty(owner.Address) || string.IsNullOrEmpty(owner.PhoneNumber) || string.IsNullOrEmpty(owner.Email))
                 {

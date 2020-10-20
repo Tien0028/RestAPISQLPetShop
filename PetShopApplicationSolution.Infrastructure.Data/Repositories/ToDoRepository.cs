@@ -30,7 +30,7 @@ namespace PetShopApplicationSolution.Infrastructure.Data.Repositories
 
         public ToDoItem Get(long id)
         {
-            return _ptx.ToDoItems.FirstOrDefault(u => u.Id == id);
+            return _ptx.ToDoItems.FirstOrDefault(u => u.ID == id);
         }
 
         public IEnumerable<ToDoItem> GetAll()
@@ -40,7 +40,7 @@ namespace PetShopApplicationSolution.Infrastructure.Data.Repositories
 
         public void Remove(long id)
         {
-            var item = _ptx.ToDoItems.FirstOrDefault(b => b.Id == id);
+            var item = _ptx.ToDoItems.FirstOrDefault(b => b.ID == id);
             _ptx.ToDoItems.Remove(item);
             _ptx.SaveChanges();
         }
